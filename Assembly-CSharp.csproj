@@ -51,7 +51,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\core\controller\MenuController.cs" />
      <Compile Include="Assets\core\controller\SnakeController.cs" />
+     <Compile Include="Assets\core\GameManager.cs" />
      <Compile Include="Assets\core\model\Cell.cs" />
      <Compile Include="Assets\core\model\SnakeModel.cs" />
      <Compile Include="Assets\core\view\SnakeView.cs" />

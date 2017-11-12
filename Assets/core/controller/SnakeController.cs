@@ -26,8 +26,7 @@ public class SnakeController: MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		snake = new SnakeModel ();
-		// Move the Snake every 300ms
-		InvokeRepeating("Move", 0.3f, 0.3f);    
+		StartMoving ();
 	}
 
 	// Update is called once per frame
@@ -41,7 +40,6 @@ public class SnakeController: MonoBehaviour {
 			direction = MoveDirection.LEFT;
 		else if (Input.GetKey (KeyCode.UpArrow))
 			direction = MoveDirection.UP;
-		Debug.Log("Direction is " + direction);
 	}
 
 	void OnTriggerEnter2D(Collider2D coll) {
@@ -69,6 +67,20 @@ public class SnakeController: MonoBehaviour {
 			snake.DoMove (direction);
 			snakeView.UpdateView (ConvertDirection(direction), false);
 		}
+	}
+
+	public void ToggleMovingStatus()
+	{
+		if (IsInvoking ("Move")) {
+			CancelInvoke ("Move");
+		} else {
+			StartMoving ();
+		}
+	}
+
+	private void StartMoving()
+	{
+		InvokeRepeating("Move", 0.3f, 0.3f);
 	}
 
 	private Vector2 ConvertDirection(MoveDirection direction)
