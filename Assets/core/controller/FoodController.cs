@@ -14,6 +14,8 @@ public class FoodController : MonoBehaviour {
 	private Cell borderLeft;
 	private Cell borderRight;
 
+	private FoodModel foodModel;
+
 	private List<GameObject> foodList = new List<GameObject> ();
 
 	void Awake()
@@ -28,6 +30,7 @@ public class FoodController : MonoBehaviour {
 	{
 		foodList.ForEach(foodCell => Object.Destroy(foodCell));
 		foodList.Clear ();
+		foodModel = new FoodModel ();
 		StartGeneratingFood ();
 	}
 
@@ -46,6 +49,14 @@ public class FoodController : MonoBehaviour {
 			CancelInvoke ("Spawn");
 		}
 	}
+
+	public void DestroyFood(Collider2D food)
+	{
+		Debug.Log ("destroying food object");
+		Transform foodTransform = food.gameObject.transform;
+		foodModel.RemoveFoodPosition ((int) foodTransform.position.x, (int) foodTransform.position.y);
+		Destroy (food.gameObject);
+	}
 	
 
 	private void Spawn() 
@@ -55,6 +66,8 @@ public class FoodController : MonoBehaviour {
 
 		// y position between top & bottom border
 		int y = (int)Random.Range(borderBottom.Y, borderTop.Y);
+
+		foodModel.AddFoodPosition (x, y);
 
 		// Instantiate the food at (x, y)
 		foodList.Add(Instantiate(foodPrefab, new Vector2(x, y), Quaternion.identity, gamePanel.transform)); // default rotation

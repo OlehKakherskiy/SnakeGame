@@ -19,6 +19,8 @@ public class SnakeController: MonoBehaviour {
 
 	public SnakeModel snake;
 	public SnakeView snakeView;
+	public GameObject gamePanel;
+	private FoodController foodController;
 
 	private MoveDirection direction;
 	private bool foodWasEaten = false;
@@ -29,6 +31,7 @@ public class SnakeController: MonoBehaviour {
 	{
 		snake = new SnakeModel ();
 		gameManager = GameObject.FindObjectOfType<GameManager> ();
+		foodController = gamePanel.GetComponent<FoodController> ();
 		snakeView.Start ();
 		StartMoving ();
 	}
@@ -82,7 +85,8 @@ public class SnakeController: MonoBehaviour {
 		{
 			Debug.Log ("food was reached, eating...");
 			foodWasEaten = true;
-			Destroy(coll.gameObject);
+			Debug.Log (foodController);
+			foodController.DestroyFood (coll);
 		} else {
 			gameManager.ShowGameOverPanel ();
 		}
