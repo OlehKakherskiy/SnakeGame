@@ -34,15 +34,40 @@ public class SnakeController: MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		// Move in a new Direction?
+		MoveDirection newDirection = this.direction;
 		if (Input.GetKey (KeyCode.RightArrow))
-			direction = MoveDirection.RIGHT;
+			newDirection = MoveDirection.RIGHT;
 		else if (Input.GetKey (KeyCode.DownArrow))
-			direction = MoveDirection.DOWN;
+			newDirection = MoveDirection.DOWN;
 		else if (Input.GetKey (KeyCode.LeftArrow))
-			direction = MoveDirection.LEFT;
+			newDirection = MoveDirection.LEFT;
 		else if (Input.GetKey (KeyCode.UpArrow))
-			direction = MoveDirection.UP;
+			newDirection = MoveDirection.UP;
+		if (moveInOppositeDirection (direction, newDirection)) {
+			gameManager.ShowGameOverPanel ();
+		} else {
+			direction = newDirection;
+		}
+	}
+
+	private bool moveInOppositeDirection(MoveDirection oldDirection, MoveDirection newDirection)
+	{
+		bool moveInOppositeDirection = false;
+		switch (newDirection) {
+		case MoveDirection.UP:
+			moveInOppositeDirection = oldDirection == MoveDirection.DOWN;
+			break;
+		case MoveDirection.DOWN:
+			moveInOppositeDirection = oldDirection == MoveDirection.UP;
+			break;
+		case MoveDirection.LEFT:
+			moveInOppositeDirection = oldDirection == MoveDirection.RIGHT;
+			break;
+		case MoveDirection.RIGHT:
+			moveInOppositeDirection = oldDirection == MoveDirection.LEFT;
+			break;
+		}
+		return moveInOppositeDirection;
 	}
 
 	void OnTriggerEnter2D(Collider2D coll) {
