@@ -30,6 +30,10 @@ public class GameManager : MonoBehaviour {
 	{
 		if (Input.GetKeyDown (KeyCode.Escape)) 
 		{
+			if (gameOverPanel.activeInHierarchy) 
+			{
+				return;
+			}
 			if (menuPanel.activeInHierarchy) 
 			{
 				menuPanel.SetActive (false);
