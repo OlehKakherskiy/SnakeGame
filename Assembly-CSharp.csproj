@@ -51,13 +51,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\core\controller\FoodController.cs" />
      <Compile Include="Assets\core\controller\MenuController.cs" />
      <Compile Include="Assets\core\controller\SnakeController.cs" />
+     <Compile Include="Assets\core\controller\Toggable.cs" />
      <Compile Include="Assets\core\GameManager.cs" />
      <Compile Include="Assets\core\model\Cell.cs" />
      <Compile Include="Assets\core\model\SnakeModel.cs" />
      <Compile Include="Assets\core\view\SnakeView.cs" />
-     <Compile Include="Assets\SpawnFood.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/opt/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

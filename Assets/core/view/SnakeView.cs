@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class SnakeView : MonoBehaviour {
-	List<Transform> tail = new List<Transform>();
+	List<GameObject> tail = new List<GameObject>();
 	public GameObject tailPrefab;
 
-	void Start() {
+	public void Start() {
+		tail.ForEach (tailCell => Object.Destroy (tailCell));
 		tail.Clear ();
 	}
 
@@ -19,12 +20,10 @@ public class SnakeView : MonoBehaviour {
 		transform.Translate(direction);
 
 		if (ate) {
-			// Load Prefab into the world
-			GameObject g = (GameObject) Instantiate(tailPrefab, v, Quaternion.identity);
-			tail.Insert(0, g.transform);
+			tail.Insert(0, (GameObject) Instantiate(tailPrefab, v, Quaternion.identity));
 		}
 		else if (tail.Count > 0) {
-			tail.Last().position = v;
+			tail.Last().transform.position = v;
 			tail.Insert(0, tail.Last());
 			tail.RemoveAt(tail.Count-1);
 		}

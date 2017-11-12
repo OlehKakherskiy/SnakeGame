@@ -18,27 +18,28 @@ public class GameManager : MonoBehaviour {
 	{
 		Debug.Log ("Disable menu panel");
 		menuPanel.SetActive (false);
+		snake.GetComponent<SnakeController> ().Start();
+		gamePanel.GetComponent<FoodController> ().Start ();
+		EnableGameActivity ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Escape)) {
-			menuPanel.SetActive (!menuPanel.activeInHierarchy);
-			ToggleGameStatus ();
+			if (menuPanel.activeInHierarchy) {
+				menuPanel.SetActive (false);
+				EnableGameActivity ();
+			} else {
+				menuPanel.SetActive (true);
+				DisableGameActivity ();
+			}
 		}
-	}
-
-	private void ToggleGameStatus()
-	{
-		gamePanel.SetActive (!gamePanel.activeInHierarchy);
-		snake.GetComponent<SnakeController> ().ToggleMovingStatus ();
 	}
 
 	public void ContinueGame()
 	{
-		gamePanel.SetActive (true);
+		EnableGameActivity ();
 		menuPanel.SetActive (false);
-		snake.GetComponent<SnakeController> ().ToggleMovingStatus ();
 	}
 
 	public void SaveAndExit(){
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour {
 
 	public void NewGame(){
 		Debug.Log ("Clicked New Game");
+		this.Start ();
 	}
 
 	public void GameOver(){
@@ -59,5 +61,19 @@ public class GameManager : MonoBehaviour {
 		NewGame();
 	}
 
+
+	private void EnableGameActivity()
+	{
+		gamePanel.SetActive (true);
+		snake.GetComponent<SnakeController> ().StartMoving ();
+		gamePanel.GetComponent<FoodController>().StartGeneratingFood ();
+	}
+
+	private void DisableGameActivity()
+	{
+		gamePanel.SetActive (false);
+		snake.GetComponent<SnakeController> ().DisableMoving ();
+		gamePanel.GetComponent<FoodController>().StopGeneratingFood ();
+	}
 
 }

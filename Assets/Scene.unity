@@ -256,7 +256,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.2426109, y: 0.19147827}
   m_AnchorMax: {x: 0.765816, y: 0.81200004}
-  m_AnchoredPosition: {x: 2.800003, y: 3.9000015}
+  m_AnchoredPosition: {x: 2.7999878, y: 3.9000015}
   m_SizeDelta: {x: 3.899994, y: 2.399994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &76567702
@@ -303,7 +303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee58c6e418ec24a2fb4e575beea0e470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 23348815}
 --- !u!114 &76567705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,7 +314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee58c6e418ec24a2fb4e575beea0e470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
 --- !u!1 &168550512
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,6 +421,7 @@ GameObject:
   - component: {fileID: 563875827}
   - component: {fileID: 563875829}
   - component: {fileID: 563875828}
+  - component: {fileID: 563875830}
   m_Layer: 5
   m_Name: GamePanel
   m_TagString: Untagged
@@ -450,7 +449,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.2426109, y: 0.19147827}
   m_AnchorMax: {x: 0.765816, y: 0.81200004}
-  m_AnchoredPosition: {x: 2.8304977, y: 3.9000015}
+  m_AnchoredPosition: {x: 2.8305054, y: 3.9000015}
   m_SizeDelta: {x: 4.0899963, y: 2.199997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &563875828
@@ -486,6 +485,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 563875826}
+--- !u!114 &563875830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 563875826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63aa2cb3551bd46f7b865c69176e21ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodPrefab: {fileID: 1410233910735494, guid: e9e883d49959c489bb5bc5d8c083a055, type: 2}
+  gamePanel: {fileID: 563875826}
 --- !u!1 &573860924
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,7 +1061,6 @@ GameObject:
   - component: {fileID: 1128417646}
   - component: {fileID: 1128417645}
   - component: {fileID: 1128417644}
-  - component: {fileID: 1128417649}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1127,22 +1138,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1128417649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1128417643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0e93ba206ecc4591b1d655bea745600, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  foodPrefab: {fileID: 1410233910735494, guid: e9e883d49959c489bb5bc5d8c083a055, type: 2}
-  borderTop: {fileID: 856829090}
-  borderBottom: {fileID: 168550514}
-  borderLeft: {fileID: 1628901063}
-  borderRight: {fileID: 1940774936}
 --- !u!1 &1577712702
 GameObject:
   m_ObjectHideFlags: 0

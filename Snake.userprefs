@@ -1,12 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Snake.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/core/controller/FoodController.cs">
     <Files>
-      <File FileName="Assets/SpawnFood.cs" Line="10" Column="22" />
-      <File FileName="Assets/Snake.cs" Line="42" Column="6" />
-      <File FileName="Assets/core/SnakeModel.cs" Line="59" Column="27" />
-      <File FileName="Assets/core/Cell.cs" Line="21" Column="3" />
-      <File FileName="Assets/controller/SnakeController.cs" Line="28" Column="36" />
+      <File FileName="Assets/SpawnFood.cs" Line="28" Column="3" />
+      <File FileName="Assets/core/controller/SnakeController.cs" Line="27" Column="9" />
+      <File FileName="Assets/core/GameManager.cs" Line="56" Column="51" />
+      <File FileName="Assets/core/controller/MenuController.cs" Line="12" Column="61" />
+      <File FileName="Assets/core/view/SnakeView.cs" Line="10" Column="23" />
+      <File FileName="Assets/core/controller/FoodController.cs" Line="21" Column="50" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

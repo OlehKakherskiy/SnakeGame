@@ -10,7 +10,6 @@ public class MenuController : MonoBehaviour {
 	{
 		Debug.Log ("MenuController awake");
 		gameManager = GameObject.FindObjectOfType<GameManager> ();
-
 	}
 
 	public void ContinueGame()

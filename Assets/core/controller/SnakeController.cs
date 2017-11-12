@@ -24,8 +24,9 @@ public class SnakeController: MonoBehaviour {
 	private bool foodWasEaten = false;
 
 	// Use this for initialization
-	void Start () {
+	public void Start () {
 		snake = new SnakeModel ();
+		snakeView.Start ();
 		StartMoving ();
 	}
 
@@ -69,18 +70,20 @@ public class SnakeController: MonoBehaviour {
 		}
 	}
 
-	public void ToggleMovingStatus()
+	public void StartMoving()
 	{
-		if (IsInvoking ("Move")) {
-			CancelInvoke ("Move");
-		} else {
-			StartMoving ();
+		if(!IsInvoking("Move"))
+		{
+			InvokeRepeating("Move", 0.3f, 0.3f);
 		}
 	}
 
-	private void StartMoving()
+	public void DisableMoving()
 	{
-		InvokeRepeating("Move", 0.3f, 0.3f);
+		if (IsInvoking ("Move")) 
+		{
+			CancelInvoke ("Move");
+		}
 	}
 
 	private Vector2 ConvertDirection(MoveDirection direction)
