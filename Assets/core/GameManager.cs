@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
 
 	public GameObject gamePanel;
 	public GameObject menuPanel;
+	public GameObject gameOverPanel;
 	public GameObject snake;
 
 
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour {
 	{
 		Debug.Log ("Disable menu panel");
 		menuPanel.SetActive (false);
+		gameOverPanel.SetActive (false);
 		snake.GetComponent<SnakeController> ().Start();
 		gamePanel.GetComponent<FoodController> ().Start ();
 		EnableGameActivity ();
@@ -47,6 +49,12 @@ public class GameManager : MonoBehaviour {
 		Application.Quit ();
 	}
 
+	public void Exit()
+	{
+		//TODO: remove all saved games
+		Application.Quit ();
+	}
+
 	public void LoadGame(){
 		Debug.Log ("Load game...");
 	}
@@ -59,6 +67,12 @@ public class GameManager : MonoBehaviour {
 	public void GameOver(){
 		//TODO: remove saved game
 		NewGame();
+	}
+
+	public void ShowGameOverPanel()
+	{
+		gameOverPanel.SetActive (true);
+		DisableGameActivity ();
 	}
 
 

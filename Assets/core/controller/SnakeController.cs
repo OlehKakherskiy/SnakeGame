@@ -22,10 +22,12 @@ public class SnakeController: MonoBehaviour {
 
 	private MoveDirection direction;
 	private bool foodWasEaten = false;
+	private GameManager gameManager;
 
 	// Use this for initialization
 	public void Start () {
 		snake = new SnakeModel ();
+		gameManager = GameObject.FindObjectOfType<GameManager> ();
 		snakeView.Start ();
 		StartMoving ();
 	}
@@ -53,7 +55,7 @@ public class SnakeController: MonoBehaviour {
 		}
 		// Collided with Tail or Border
 		else {
-			Debug.Log ("END");
+			gameManager.ShowGameOverPanel ();
 		}
 	}
 
