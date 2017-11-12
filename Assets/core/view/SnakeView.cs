@@ -9,27 +9,30 @@ public class SnakeView : MonoBehaviour {
 
 	private List<GameObject> tail = new List<GameObject>();
 
-	public void Start() {
+	public void Start() 
+	{
 		tail.ForEach (tailCell => Object.Destroy (tailCell));
 		tail.Clear ();
 		transform.Translate (-transform.position);
 	}
 
-	public void UpdateView(Vector2 direction, bool ate) {
+	public void UpdateView(Vector2 direction, bool ate) 
+	{
 		// Save current position (gap will be here)
 		Vector2 v = transform.position;
 
 		// Move head into new direction (now there is a gap)
 		transform.Translate(direction);
 
-		if (ate) {
+		if (ate) 
+		{
 			tail.Insert(0, (GameObject) Instantiate(tailPrefab, v, Quaternion.identity, gamePanel.transform));
 		}
-		else if (tail.Count > 0) {
+		else if (tail.Count > 0) 
+		{
 			tail.Last().transform.position = v;
 			tail.Insert(0, tail.Last());
 			tail.RemoveAt(tail.Count-1);
 		}
 	}
-
 }

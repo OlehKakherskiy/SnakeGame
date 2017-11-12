@@ -23,9 +23,9 @@ public class FoodController : MonoBehaviour {
 		borderLeft = getPosition (gamePanel.transform.Find("LeftBorder"));
 		borderRight = getPosition (gamePanel.transform.Find("RightBorder"));
 	}
-
-	// Use this for initialization
-	public void Start () {
+		
+	public void Start () 
+	{
 		foodList.ForEach(foodCell => Object.Destroy(foodCell));
 		foodList.Clear ();
 		StartGeneratingFood ();
@@ -47,8 +47,9 @@ public class FoodController : MonoBehaviour {
 		}
 	}
 	
-	// Spawn one piece of food
-	void Spawn() {
+
+	private void Spawn() 
+	{
 		// x position between left & right border
 		int x = (int)Random.Range(borderLeft.X, borderRight.X);
 

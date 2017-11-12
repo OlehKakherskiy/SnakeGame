@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Awake () {
+	void Awake () 
+	{
 		LoadGame ();
 	}
 
@@ -24,11 +25,13 @@ public class GameManager : MonoBehaviour {
 		gamePanel.GetComponent<FoodController> ().Start ();
 		EnableGameActivity ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetKeyDown (KeyCode.Escape)) {
-			if (menuPanel.activeInHierarchy) {
+
+	void Update () 
+	{
+		if (Input.GetKeyDown (KeyCode.Escape)) 
+		{
+			if (menuPanel.activeInHierarchy) 
+			{
 				menuPanel.SetActive (false);
 				EnableGameActivity ();
 			} else {
@@ -44,7 +47,8 @@ public class GameManager : MonoBehaviour {
 		menuPanel.SetActive (false);
 	}
 
-	public void SaveAndExit(){
+	public void SaveAndExit()
+	{
 		Debug.Log ("Clicked Save And Exit Game");
 		Application.Quit ();
 	}
@@ -55,16 +59,19 @@ public class GameManager : MonoBehaviour {
 		Application.Quit ();
 	}
 
-	public void LoadGame(){
+	public void LoadGame()
+	{
 		Debug.Log ("Load game...");
 	}
 
-	public void NewGame(){
+	public void NewGame()
+	{
 		Debug.Log ("Clicked New Game");
 		this.Start ();
 	}
 
-	public void GameOver(){
+	public void GameOver()
+	{
 		//TODO: remove saved game
 		NewGame();
 	}

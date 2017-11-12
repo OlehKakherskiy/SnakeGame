@@ -25,7 +25,8 @@ public class SnakeController: MonoBehaviour {
 	private GameManager gameManager;
 
 	// Use this for initialization
-	public void Start () {
+	public void Start () 
+	{
 		snake = new SnakeModel ();
 		gameManager = GameObject.FindObjectOfType<GameManager> ();
 		snakeView.Start ();
@@ -33,7 +34,8 @@ public class SnakeController: MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		MoveDirection newDirection = this.direction;
 		if (Input.GetKey (KeyCode.RightArrow))
 			newDirection = MoveDirection.RIGHT;
@@ -43,7 +45,8 @@ public class SnakeController: MonoBehaviour {
 			newDirection = MoveDirection.LEFT;
 		else if (Input.GetKey (KeyCode.UpArrow))
 			newDirection = MoveDirection.UP;
-		if (moveInOppositeDirection (direction, newDirection)) {
+		if (moveInOppositeDirection (direction, newDirection)) 
+		{
 			gameManager.ShowGameOverPanel ();
 		} else {
 			direction = newDirection;
@@ -53,7 +56,8 @@ public class SnakeController: MonoBehaviour {
 	private bool moveInOppositeDirection(MoveDirection oldDirection, MoveDirection newDirection)
 	{
 		bool moveInOppositeDirection = false;
-		switch (newDirection) {
+		switch (newDirection) 
+		{
 		case MoveDirection.UP:
 			moveInOppositeDirection = oldDirection == MoveDirection.DOWN;
 			break;
@@ -70,23 +74,24 @@ public class SnakeController: MonoBehaviour {
 		return moveInOppositeDirection;
 	}
 
-	void OnTriggerEnter2D(Collider2D coll) {
+	void OnTriggerEnter2D(Collider2D coll) 
+	{
 		Debug.Log ("Some object was reached");
 		// Food?
-		if (coll.name.StartsWith("FoodPrefab")) {
+		if (coll.name.StartsWith("FoodPrefab")) 
+		{
 			Debug.Log ("food was reached, eating...");
 			foodWasEaten = true;
 			Destroy(coll.gameObject);
-		}
-		// Collided with Tail or Border
-		else {
+		} else {
 			gameManager.ShowGameOverPanel ();
 		}
 	}
 
 	public void Move()
 	{
-		if (foodWasEaten) {
+		if (foodWasEaten) 
+		{
 			Debug.Log ("food was eaten, processing update model");
 			snake.IncreaseSize (direction);
 			snakeView.UpdateView (ConvertDirection(direction), true);
@@ -116,7 +121,8 @@ public class SnakeController: MonoBehaviour {
 	private Vector2 ConvertDirection(MoveDirection direction)
 	{
 		Vector2 d = Vector2.right;
-		switch (direction) {
+		switch (direction) 
+		{
 		case MoveDirection.UP:
 			d = Vector2.up;
 			break;
