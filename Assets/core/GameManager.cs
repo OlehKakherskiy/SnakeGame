@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour {
 	public void SaveAndExit()
 	{
 		Debug.Log ("Clicked save and exit game");
+		gameData.Food.ConvertFoodPositionsToPersist ();
 		gameProceedingStrategy.Save (gameData);
 		Application.Quit ();
 	}
@@ -91,6 +92,7 @@ public class GameManager : MonoBehaviour {
 	public void LoadGame()
 	{
 		gameData = gameProceedingStrategy.Load ();
+		gameData.Food.ConvertFoodPositionsToPerform ();
 	}
 
 	public void NewGame()

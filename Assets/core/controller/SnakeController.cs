@@ -107,7 +107,6 @@ public class SnakeController: MonoBehaviour {
 		{
 			Debug.Log ("food was reached, eating...");
 			foodWasEaten = true;
-			Debug.Log (foodController);
 			foodController.DestroyFood (coll);
 		} else {
 			gameManager.ShowGameOverPanel ();
