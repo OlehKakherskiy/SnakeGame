@@ -57,7 +57,10 @@
      <Compile Include="Assets\core\controller\SnakeController.cs" />
      <Compile Include="Assets\core\GameManager.cs" />
      <Compile Include="Assets\core\model\Cell.cs" />
+     <Compile Include="Assets\core\model\FileGameProceedStrategy.cs" />
      <Compile Include="Assets\core\model\FoodModel.cs" />
+     <Compile Include="Assets\core\model\GameData.cs" />
+     <Compile Include="Assets\core\model\GameProceedingStrategy.cs" />
      <Compile Include="Assets\core\model\SnakeModel.cs" />
      <Compile Include="Assets\core\view\SnakeView.cs" />
  <Reference Include="UnityEngine.UI">

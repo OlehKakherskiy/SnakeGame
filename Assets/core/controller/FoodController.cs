@@ -28,9 +28,10 @@ public class FoodController : MonoBehaviour {
 		
 	public void Start () 
 	{
-		foodList.ForEach(foodCell => Object.Destroy(foodCell));
+		foodList.ForEach(foodCell => Object.Destroy(foodCell)); //TODO: simple Destroy(foodcell);
 		foodList.Clear ();
-		foodModel = new FoodModel ();
+		foodModel = GameObject.FindObjectOfType<GameManager> ().GameData.Food;
+		preInstantiateFood ();
 		StartGeneratingFood ();
 	}
 
@@ -62,15 +63,25 @@ public class FoodController : MonoBehaviour {
 	private void Spawn() 
 	{
 		// x position between left & right border
-		int x = (int)Random.Range(borderLeft.X, borderRight.X);
+		int x = (int)Random.Range(borderLeft.X + 1, borderRight.X);
 
 		// y position between top & bottom border
-		int y = (int)Random.Range(borderBottom.Y, borderTop.Y);
+		int y = (int)Random.Range(borderBottom.Y + 1, borderTop.Y);
 
 		foodModel.AddFoodPosition (x, y);
 
 		// Instantiate the food at (x, y)
-		foodList.Add(Instantiate(foodPrefab, new Vector2(x, y), Quaternion.identity, gamePanel.transform)); // default rotation
+		foodList.Add(createFoodCell(new Cell(x,y))); // default rotation
+	}
+
+	private void preInstantiateFood()
+	{
+		foodModel.FoodPositions.ForEach (cell => foodList.Add (createFoodCell (cell)));
+	}
+
+	private GameObject createFoodCell(Cell foodCell)
+	{
+		return Instantiate (foodPrefab, new Vector2 (foodCell.X, foodCell.Y), Quaternion.identity, gamePanel.transform);
 	}
 		
 

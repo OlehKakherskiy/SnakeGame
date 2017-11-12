@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
+[System.Serializable]
 public enum MoveDirection {
 	UP, DOWN, RIGHT, LEFT
 }
@@ -26,14 +28,33 @@ public class SnakeController: MonoBehaviour {
 	private bool foodWasEaten = false;
 	private GameManager gameManager;
 
+	void Awake()
+	{
+		gameManager = GameObject.FindObjectOfType<GameManager> ();
+	}
 	// Use this for initialization
 	public void Start () 
 	{
-		snake = new SnakeModel ();
-		gameManager = GameObject.FindObjectOfType<GameManager> ();
+		snake = gameManager.GameData.Snake;
 		foodController = gamePanel.GetComponent<FoodController> ();
 		snakeView.Start ();
+		InstantiateSnake ();
+		direction = snake.Direction;
 		StartMoving ();
+	}
+
+	private void InstantiateSnake()
+	{
+		List<Vector2> SnakePos = new List<Vector2> ();
+		Snake.SnakeCells.ForEach (cell => SnakePos.Add (convertCell (cell)));
+		Vector2 head = SnakePos.First ();
+		SnakePos.RemoveAt (0);
+		snakeView.InstantiateSnake (head, SnakePos);
+	}
+
+	private Vector2 convertCell(Cell cell)
+	{
+		return new Vector2 (cell.X, cell.Y);
 	}
 
 	// Update is called once per frame
@@ -53,6 +74,7 @@ public class SnakeController: MonoBehaviour {
 			gameManager.ShowGameOverPanel ();
 		} else {
 			direction = newDirection;
+			snake.Direction = direction;
 		}
 	}
 

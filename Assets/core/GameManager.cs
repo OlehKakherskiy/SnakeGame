@@ -9,21 +9,39 @@ public class GameManager : MonoBehaviour {
 	public GameObject gameOverPanel;
 	public GameObject snake;
 
+	private GameProceedingStrategy gameProceedingStrategy;
+	private GameData gameData;
+
+	public GameData GameData {
+		get {
+			return this.gameData;
+		}
+	}
+
 
 	// Use this for initialization
 	void Awake () 
 	{
+		gameProceedingStrategy = new FileGameProceedStrategy ();
 		LoadGame ();
 	}
 
 	void Start()
 	{
-		Debug.Log ("Disable menu panel");
+		//enable only game panel
 		menuPanel.SetActive (false);
 		gameOverPanel.SetActive (false);
+		gamePanel.SetActive (true);
+
+		//reset game data - starting from scratch
+		//gameData = new GameData ();
 		snake.GetComponent<SnakeController> ().Start();
 		gamePanel.GetComponent<FoodController> ().Start ();
+
+		//start game
 		EnableGameActivity ();
+
+		Debug.Log ("New game started");
 	}
 
 	void Update () 
@@ -32,15 +50,20 @@ public class GameManager : MonoBehaviour {
 		{
 			if (gameOverPanel.activeInHierarchy) 
 			{
+				//ignore escape on game over panel
 				return;
 			}
 			if (menuPanel.activeInHierarchy) 
 			{
+				//continue game
 				menuPanel.SetActive (false);
 				EnableGameActivity ();
+				Debug.Log ("continue game after pause");
 			} else {
+				//pause game
 				menuPanel.SetActive (true);
 				DisableGameActivity ();
+				Debug.Log ("pause game");
 			}
 		}
 	}
@@ -53,30 +76,33 @@ public class GameManager : MonoBehaviour {
 
 	public void SaveAndExit()
 	{
-		Debug.Log ("Clicked Save And Exit Game");
+		Debug.Log ("Clicked save and exit game");
+		gameProceedingStrategy.Save (gameData);
 		Application.Quit ();
 	}
 
 	public void Exit()
 	{
-		//TODO: remove all saved games
+		Debug.Log ("Clicked exit game without saving");
+		gameProceedingStrategy.RemoveSavedGame ();
 		Application.Quit ();
 	}
 
 	public void LoadGame()
 	{
-		Debug.Log ("Load game...");
+		gameData = gameProceedingStrategy.Load ();
 	}
 
 	public void NewGame()
 	{
-		Debug.Log ("Clicked New Game");
+		gameProceedingStrategy.RemoveSavedGame ();
+		gameData = new GameData ();
 		this.Start ();
 	}
 
 	public void GameOver()
 	{
-		//TODO: remove saved game
+		Debug.Log ("Game is over");
 		NewGame();
 	}
 

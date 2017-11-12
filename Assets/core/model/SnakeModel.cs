@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
+[System.Serializable]
 public class SnakeModel {
 
 	private static readonly int SECOND_POS = 1;
@@ -16,6 +17,12 @@ public class SnakeModel {
 		}
 		set {
 			direction = value;
+		}
+	}
+
+	public List<Cell> SnakeCells {
+		get {
+			return this.snakeCells;
 		}
 	}
 
@@ -61,6 +68,7 @@ public class SnakeModel {
 			head.X -= 1;
 			break;
 		}
+		System.Console.WriteLine ("new head position is " + head);
 	}
 
 	private void Move(Cell c, int newX, int newY, int posFrom, int posTo)

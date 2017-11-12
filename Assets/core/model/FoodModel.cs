@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
+using UnityEngine;
 
+[System.Serializable]
 public class FoodModel {
 
 	private List<Cell> foodPositions = new List<Cell>();
@@ -13,12 +16,15 @@ public class FoodModel {
 
 	public void AddFoodPosition(int x, int y)
 	{
-		foodPositions.Add (new Cell (x, y));
+		Cell newFoodPos = new Cell (x, y);
+		Debug.Log("Adding new food position to model " + newFoodPos);
+		foodPositions.Add (newFoodPos);
 	}
 
 	public void RemoveFoodPosition(int x, int y)
 	{
-		foodPositions.Remove (new Cell (x, y));
+		Cell removeFoodPos = new Cell (x, y);
+		Debug.Log("Food was removed from position " + removeFoodPos +" - "+foodPositions.Remove (removeFoodPos));
 	}
 
 }

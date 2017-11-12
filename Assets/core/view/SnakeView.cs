@@ -11,9 +11,8 @@ public class SnakeView : MonoBehaviour {
 
 	public void Start() 
 	{
-		tail.ForEach (tailCell => Object.Destroy (tailCell));
+		tail.ForEach (tailCell => Object.Destroy (tailCell)); //TODO: try just Destroy(GameObject)
 		tail.Clear ();
-		transform.Translate (-transform.position);
 	}
 
 	public void UpdateView(Vector2 direction, bool ate) 
@@ -26,7 +25,7 @@ public class SnakeView : MonoBehaviour {
 
 		if (ate) 
 		{
-			tail.Insert(0, (GameObject) Instantiate(tailPrefab, v, Quaternion.identity, gamePanel.transform));
+			tail.Insert(0, CreateTailCell(v));
 		}
 		else if (tail.Count > 0) 
 		{
@@ -34,5 +33,16 @@ public class SnakeView : MonoBehaviour {
 			tail.Insert(0, tail.Last());
 			tail.RemoveAt(tail.Count-1);
 		}
+	}
+
+	private GameObject CreateTailCell(Vector2 v)
+	{
+		return (GameObject)Instantiate (tailPrefab, v, Quaternion.identity, gamePanel.transform);
+	}
+
+	public void InstantiateSnake(Vector2 head, List<Vector2> tail)
+	{
+		transform.position = head;
+		tail.ForEach(tailCell => this.tail.Add(CreateTailCell(tailCell)));
 	}
 }
